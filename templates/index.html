@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHITSANULOK — One Day Mini Tour</title>
+    <!-- Google Fonts - Prompt & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Prompt:wght@200;300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfcfc;
+            --text-main: #1f1f1f;
+            --text-muted: #6e6e6e;
+            --accent: #111111;
+            --border-color: #eaeaea;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Prompt', 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.75;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 90px 24px 60px 24px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        header p.subtitle {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 14px;
+        }
+
+        header h1 {
+            font-size: 2.4rem;
+            font-weight: 400;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Places Timeline Section */
+        .trip-timeline {
+            padding: 80px 0;
+        }
+
+        .place-card {
+            display: flex;
+            align-items: center;
+            gap: 70px;
+            margin-bottom: 110px;
+        }
+
+        .place-card:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .place-image {
+            flex: 1.1;
+            overflow: hidden;
+            background-color: #f0f0f0;
+            aspect-ratio: 16 / 10;
+            border: 1px solid var(--border-color);
+        }
+
+        .place-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(15%);
+            transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .place-image:hover img {
+            transform: scale(1.025);
+        }
+
+        .place-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .place-number {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .place-title {
+            font-size: 1.55rem;
+            font-weight: 400;
+            margin-bottom: 16px;
+            letter-spacing: -0.3px;
+            color: var(--text-main);
+        }
+
+        .place-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 300;
+            margin-bottom: 28px;
+            text-align: justify;
+        }
+
+        /* Minimal Outline Button */
+        .btn-minimal {
+            align-self: flex-start;
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 22px;
+            border: 1px solid var(--text-main);
+            background: transparent;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-minimal:hover {
+            background: var(--text-main);
+            color: #ffffff;
+        }
+
+        /* Map Integration Section */
+        .map-section {
+            border-top: 1px solid var(--border-color);
+            padding: 90px 0;
+            background-color: #ffffff;
+        }
+
+        .map-header {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .map-header h2 {
+            font-size: 1.75rem;
+            font-weight: 400;
+            margin-bottom: 12px;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 520px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 6px 24px rgba(0,0,0,0.01);
+            margin-bottom: 45px;
+        }
+
+        .map-action {
+            text-align: center;
+        }
+
+        .btn-primary-minimal {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--accent);
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            font-weight: 400;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn-primary-minimal:hover {
+            opacity: 0.9;
+        }
+
+        footer {
+            text-align: center;
+            padding: 45px 0;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            background-color: var(--bg-color);
+        }
+
+        /* Responsive UI Adjustment */
+        @media (max-width: 768px) {
+            header { padding: 60px 24px 40px 24px; }
+            header h1 { font-size: 1.85rem; }
+            .place-card, .place-card:nth-child(even) {
+                flex-direction: column;
+                gap: 24px;
+                margin-bottom: 65px;
+            }
+            .map-container { height: 380px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <p class="subtitle">Phitsanulok Route</p>
+        <h1>Mini Tour Trip One Day</h1>
+    </header>
+
+    <main class="container">
+        <section class="trip-timeline">
+            {% for loc in locations %}
+            <div class="place-card">
+                <div class="place-image">
+                    <img src="{{ loc.image_url }}" alt="{{ loc.name }}">
+                </div>
+                <div class="place-details">
+                    <span class="place-number">ROUTE POINT 0{{ loc.id }}</span>
+                    <h2 class="place-title">{{ loc.name }}</h2>
+                    <p class="place-desc">{{ loc.description }}</p>
+                    <a href="{{ loc.gmaps_url }}" target="_blank" class="btn-minimal">
+                       ข้อมูลเส้นทาง
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </section>
+    </main>
+
+    <section class="map-section">
+        <div class="container">
+            <div class="map-header">
+                <h2>Trip Route Overview</h2>
+                <p style="color: var(--text-muted); font-weight: 300; font-size: 0.95rem;">ภาพรวมแผนที่นำทางและพิกัดภูมิศาสตร์สำหรับการเดินทางในหนึ่งวัน</p>
+            </div>
+            
+            <div class="map-container">
+                <!-- นำ HTML แผนที่ของ Folium มาแสดงผลอย่างปลอดภัย -->
+                {{ map_html | safe }}
+            </div>
+
+            <div class="map-action">
+                <a href="{{ full_route_url }}" target="_blank" class="btn-primary-minimal">
+                    Explore Route (Google Maps)
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Phitsanulok One Day Mini Tour. Curated in Minimalist Style.</p>
+    </footer>
+
+</body>
+</html>
